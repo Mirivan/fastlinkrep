@@ -9,7 +9,7 @@ from userbot.events import register
 async def _(ani):
     ch = '@m_aniart'
     al = int((await ani.client.get_messages(ch, limit=0)).total)
-    result = ani.await client(functions.messages.GetHistoryRequest(
+    result = await ani.client(functions.messages.GetHistoryRequest(
         peer=ch,
         offset_id=0,
         add_offset=random.randint(0, al),
