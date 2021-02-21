@@ -2,6 +2,8 @@ import random
 """ module by mirivan """
 from telethon.tl import functions
 
+from datetime import datetime
+
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
