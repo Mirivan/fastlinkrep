@@ -34,5 +34,5 @@ async def _(ani):
 CMD_HELP.update({
     'aniart':
     '.aniart\
-        \nUsage: Parse random Anime ASCII Art from @m_aniart.'
+        \nUsage: Parse random Anime ASCII Art from @m_aniart channel.'
 })
