@@ -9,7 +9,7 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="\.aniart")
 async def _(ani):
-    ch = 'https://t.me/joinchat/MetLl3nPhDM0YmM6'
+    ch = '@module_aniart'
     al = int((await ani.client.get_messages(ch, limit=0)).total)
     result = await ani.client(functions.messages.GetHistoryRequest(
         peer=ch,
