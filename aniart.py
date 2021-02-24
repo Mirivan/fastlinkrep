@@ -9,7 +9,7 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="\.aniart")
 async def _(ani):
-    ch = '@m_aniart'
+    ch = 'https://t.me/joinchat/MetLl3nPhDM0YmM6'
     al = int((await ani.client.get_messages(ch, limit=0)).total)
     result = await ani.client(functions.messages.GetHistoryRequest(
         peer=ch,
@@ -34,5 +34,5 @@ async def _(ani):
 CMD_HELP.update({
     'aniart':
     '.aniart\
-        \nUsage: Parse random Anime ASCII Art from @m_aniart channel.'
+        \nUsage: Parse random Anime ASCII Art from AniArt Module💕 channel.'
 })
