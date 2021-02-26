@@ -10,6 +10,7 @@ from .. import loader, utils
 
 logger = logging.getLogger(__name__)
 
+@loader.tds
 class HentaiMod(loader.Module)
     strings = {"name": "(mirivan) Fastlinkrep"}
 
