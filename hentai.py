@@ -11,12 +11,12 @@ from .. import loader, utils
 logger = logging.getLogger(__name__)
 
 class HentaiMod(loader.Module)
-	strings = {"name": "(mirivan) Fastlinkrep"}
+    strings = {"name": "(mirivan) Fastlinkrep"}
 
-	@loader.unrestricted
-	async def hentaicmd(self, message):
-		"""Hentai image parser"""
-		links = ['https://t.me/joinchat/AAAAAEkJjU8L9J6TDdkAIw', '@hentai', '@uncensored_channel']
+    @loader.unrestricted
+    async def hentaicmd(self, message):
+        """Hentai image parser"""
+        links = ['https://t.me/joinchat/AAAAAEkJjU8L9J6TDdkAIw', '@hentai', '@uncensored_channel']
         ch = links[random.randint(0, len(links)-1)]
         al = int((await ani.client.get_messages(ch, limit=0)).total)
         result = await ani.client(functions.messages.GetHistoryRequest(
