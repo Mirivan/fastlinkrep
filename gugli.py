@@ -8,7 +8,7 @@ from .. import loader, utils
 logger = logging.getLogger(__name__)
 
 @loader.tds
-class GugliMod(loader.Module)
+class GugliMod(loader.Module):
     strings = {"name": "(mirivan) Fastlinkrep"}
 
     @loader.unrestricted
