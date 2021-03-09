@@ -33,8 +33,7 @@ class FastlinkrepMod(loader.Module):
                 Image.open(file).save(img, 'PNG')
                 media = await distort(io.BytesIO(img.getvalue()), rescale_rate)
                 out, im = io.BytesIO(), Image.open(media)
-                if force_file:
-                    mime = 'png'
+                mime = 'png'
                 out.name = f'out.{mime}'
                 im.save(out, mime.upper())
                 out.seek(0)
