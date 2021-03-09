@@ -61,6 +61,8 @@ class FastlinkrepMod(loader.Module):
                     await message.edit('🐺 Прешелите любой тип стикера.')
             else:
                await message.edit('🐺 Прешелите любой тип стикера.')
+        else:
+            await message.edit('🐺 Прешелите любой тип стикера.')
 
 async def distort(file, rescale_rate):
     img = IM(file=file)
