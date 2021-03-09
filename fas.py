@@ -18,7 +18,7 @@ class FastlinkrepMod(loader.Module):
     async def fascmd(self, message):
         if message.is_reply:
             reply = await message.get_reply_message()
-            if reply.media:
+            if reply.media or reply.file:
                 if reply.media.photo:
                     a = utils.get_args_raw(message)
                     if a:
@@ -39,25 +39,25 @@ class FastlinkrepMod(loader.Module):
                     im.save(out, mime.upper())
                     out.seek(0)
                     await message.client.send_file(message.chat_id, out, reply_to=reply_message.id)
-            elif reply.file and reply.file.name.endswith(".tgs"):
-                await message.edit("🐺 Обработка...")
-                await reply.download_media("tgs.tgs")
-                os.system("lottie_convert.py tgs.tgs json.json")
-                with open("json.json","r") as f: stick = f.read(); f.close()
-                for i in range(1, random.randint(6, 10)):
-                    stick = random.choice([stick.replace(f'[{i}]', f'[{(i+i)*7}]'),
-                                                              stick.replace(f'[{i}]', f'[{(i+i)*6}]'),
-                                                              stick.replace(f'[{i}]', f'[{(i+i)*5}]'),
-                                                              stick.replace(f'[{i}]', f'[{(i+i)*4}]'),
-                                                              stick.replace(f'[{i}]', f'[{(i+i)*3}]')])
-                    with open("json.json","w") as f: f.write(stick); f.close()
-                os.system("lottie_convert.py json.json tgs.tgs")
-                await reply.reply(file="tgs.tgs")
-                os.remove("tgs.tgs")
-                os.remove("json.json")
-                await message.delete()
-            else:
-                await message.edit('🐺 Прешелите любой тип стикера.')
+                elif reply.file.name.endswith(".tgs"):
+                    await message.edit("🐺 Обработка...")
+                    await reply.download_media("tgs.tgs")
+                    os.system("lottie_convert.py tgs.tgs json.json")
+                    with open("json.json","r") as f: stick = f.read(); f.close()
+                    for i in range(1, random.randint(6, 10)):
+                        stick = random.choice([stick.replace(f'[{i}]', f'[{(i+i)*7}]'),
+                                                                  stick.replace(f'[{i}]', f'[{(i+i)*6}]'),
+                                                                  stick.replace(f'[{i}]', f'[{(i+i)*5}]'),
+                                                                  stick.replace(f'[{i}]', f'[{(i+i)*4}]'),
+                                                                  stick.replace(f'[{i}]', f'[{(i+i)*3}]')])
+                        with open("json.json","w") as f: f.write(stick); f.close()
+                    os.system("lottie_convert.py json.json tgs.tgs")
+                    await reply.reply(file="tgs.tgs")
+                    os.remove("tgs.tgs")
+                    os.remove("json.json")
+                    await message.delete()
+                else:
+                    await message.edit('🐺 Прешелите любой тип стикера.')
 
 async def distort(file, rescale_rate):
     img = IM(file=file)
