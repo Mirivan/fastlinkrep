@@ -11,7 +11,7 @@ from .. import loader, utils
 logger = logging.getLogger(__name__)
 
 @loader.tds
-class FuckstickerMod(loader.Module)
+class FastlinkrepMod(loader.Module):
     strings = {"name": "(mirivan) FuckSticker"}
 
     @loader.unrestricted
