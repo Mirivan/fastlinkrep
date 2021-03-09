@@ -18,7 +18,7 @@ class FastlinkrepMod(loader.Module):
     async def fascmd(self, message):
         if message.is_reply:
             reply = await message.get_reply_message()
-            if reply.photo:
+            if reply.media and reply.media.document:
                 a = message.pattern_match.group(1)
                 if a:
                     if int(a) > 150:
@@ -27,7 +27,7 @@ class FastlinkrepMod(loader.Module):
                         rescale_rate = int(a)
                 else:
                     rescale_rate = random.randint(35,100)
-                file = await message.client.download_media(reply_message.photo, bytes)
+                file = await message.client.download_media(reply.media.document, bytes)
                 file, img = io.BytesIO(file), io.BytesIO()
                 img.name = 'img.png'
                 Image.open(file).save(img, 'PNG')
@@ -39,7 +39,7 @@ class FastlinkrepMod(loader.Module):
                 im.save(out, mime.upper())
                 out.seek(0)
                 await message.client.send_file(message.chat_id, out, reply_to=reply_message.id)
-            elif reply.file.name.endswith(".tgs"):
+            elif reply.file and reply.file.name.endswith(".tgs"):
                 await message.edit("🐺 Обработка...")
                 await reply.download_media("tgs.tgs")
                 os.system("lottie_convert.py tgs.tgs json.json")
