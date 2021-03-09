@@ -40,7 +40,7 @@ class FastlinkrepMod(loader.Module):
                     out.seek(0)
                     await message.client.send_file(message.chat_id, out, reply_to=reply_message.id)
             elif reply.file:
-                elif reply.file.name.endswith(".tgs"):
+                if reply.file.name.endswith(".tgs"):
                     await message.edit("🐺 Обработка...")
                     await reply.download_media("tgs.tgs")
                     os.system("lottie_convert.py tgs.tgs json.json")
