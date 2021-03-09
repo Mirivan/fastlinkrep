@@ -19,7 +19,7 @@ class FastlinkrepMod(loader.Module):
         if message.is_reply:
             reply = await message.get_reply_message()
             if reply.media and reply.media.document:
-                a = self.pattern_match.group(1)
+                a = utils.get_args_raw(message)
                 if a:
                     if int(a) > 150:
                         rescale_rate = 100
