@@ -1,5 +1,6 @@
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
+import os
 """ module by mirivan """
 
 import logging
