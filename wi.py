@@ -76,7 +76,7 @@ async def fetch_info(replied_user, event):
     user_bio = replied_user.about
     is_bot = "✓" if replied_user.user.bot else ("✖")
     verified = "✓" if replied_user.user.verified else ("✖")
-    photo = await client.download_profile_photo(
+    photo = await event.client.download_profile_photo(
         user_id, "tmp" + str(user_id) + ".jpg", download_big=True
     )
     first_name = (
