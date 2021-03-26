@@ -1,4 +1,4 @@
-import io
+import io, urllib
 """ module by mirivan """
 
 import logging
@@ -14,10 +14,9 @@ class GugliMod(loader.Module):
     @loader.unrestricted
     async def guglicmd(self, google):
         """Gugli blyat"""
+        reply_message = None
         if google.is_reply:
             reply_message = await google.get_reply_message()
-        else:
-            reply_message = None
         url = "https://github.com/Mirivan/fastlinkrep/raw/main/google.jpg"
         file = get(url)
         if not file.ok:
@@ -30,3 +29,12 @@ class GugliMod(loader.Module):
         await google.client.send_message(google.chat_id,
             file=file,
             reply_to=reply_message)
+    async def ggencmd(self, msg):
+        pattern = utils.get_args_raw(msg)
+        reply = await msg.get_reply_message()
+        if pattern: text = pattern
+        elif msg.is_reply: text = reply.text
+        else: await msg.edit('🦈 **Необходим паттерн.**'); return
+        url = urllib.parse.quote_plus(text)
+        await msg.edit(f'🦈 [Google](google.com/search?q={url}) **<-**',
+                                     link_preview=False)
